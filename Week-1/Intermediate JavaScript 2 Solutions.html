@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Intermediate JavaScript 2 Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <link href="./Intermediate JavaScript 2 Solutions_files/sanitize.css" rel="stylesheet">
+  <link rel="stylesheet" href="./Intermediate JavaScript 2 Solutions_files/pygments.css">
+  <link rel="stylesheet" href="./Intermediate JavaScript 2 Solutions_files/handouts.css">
+
+  
+    <link href="./Intermediate JavaScript 2 Solutions_files/css" rel="stylesheet">
+  
+  <style>
+
+
+  </style>
+  <style>
+    :root {
+      --theme-bodyfont: "Source Serif Pro", serif;
+      --theme-headfont: "Source Serif Pro", serif;
+      --theme-codefont: "Source Code Pro", monospace;
+      --theme-sidebarcolor: rgb(248, 248, 240);
+      --theme-backgroundcolor: white;
+      --theme-clientcolor: rgb(247, 122, 123);
+      --theme-logo: url(../_static/rithm.png)
+  </style>
+</head>
+
+<body class="glide">
+<div id="page-wrapper">
+  <div id="page-sidebar">
+    <header>
+        <img class="page-logo" alt="logo" src="./Intermediate JavaScript 2 Solutions_files/rithm.png">
+      <p class="page-project">Curriculum</p>
+      <p class="page-event">Rithm r24</p>
+      
+      <p></p>
+    </header>
+
+    <nav id="toc">
+      <ul>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#">Intermediate JavaScript 2 Solutions</a><ul>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-string-concatenation">ES5 String Concatenation</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-template-literals">ES2015 Template Literals</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-global-constants">ES5 Global Constants</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-global-constants">ES2015 Global Constants</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-assigning-variables-to-object-properties">ES5 Assigning Variables to Object Properties</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-object-destructuring">ES2015 Object Destructuring</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-array-swap">ES5 Array Swap</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-one-line-array-swap-with-destructuring">ES2015 One-Line Array Swap with Destructuring</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-map-callback">ES5 Map Callback</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-arrow-functions-shorthand">ES2015 Arrow Functions Shorthand</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-default-arguments">ES5 Default Arguments</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-default-arguments">ES2015 Default Arguments</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-function-that-takes-a-variable-number-of-arguments">ES5 Function that takes a variable number of arguments</a></li>
+<li><a class="reference internal" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-function-that-takes-a-variable-number-of-arguments">ES2015 Function that takes a variable number of arguments</a></li>
+</ul>
+</li>
+</ul>
+
+    </nav>
+  </div>
+
+  <div id="page-content" class="page-content">
+      
+  <div class="section" id="intermediate-javascript-2-solutions">
+<h1>Intermediate JavaScript 2 Solutions<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#intermediate-javascript-2-solutions" title="Permalink to this headline">»</a></h1>
+<p><a class="reference external" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/solution.zip">Download our solution</a></p>
+<div class="section" id="es5-string-concatenation">
+<h2>ES5 String Concatenation<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-string-concatenation" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Michelle'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">favoriteColor</span> <span class="o">=</span> <span class="s1">'purple'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">city</span> <span class="o">=</span> <span class="s1">'San Francisco'</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+  <span class="nx">name</span> <span class="o">+</span>
+    <span class="s1">' lives in '</span> <span class="o">+</span>
+    <span class="nx">city</span> <span class="o">+</span>
+    <span class="s1">' and their favorite color is '</span> <span class="o">+</span>
+    <span class="nx">favoriteColor</span> <span class="o">+</span>
+    <span class="s1">'.'</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-template-literals">
+<h2>ES2015 Template Literals<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-template-literals" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Michelle'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">favoriteColor</span> <span class="o">=</span> <span class="s1">'purple'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">city</span> <span class="o">=</span> <span class="s1">'San Francisco'</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> lives in </span><span class="si">${</span><span class="nx">city</span><span class="si">}</span><span class="sb"> and their favorite color is </span><span class="si">${</span><span class="nx">favoriteColor</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-global-constants">
+<h2>ES5 Global Constants<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-global-constants" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">PI</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<span class="nx">PI</span> <span class="o">=</span> <span class="mf">42</span><span class="p">;</span> <span class="c1">// stop me from doing this!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-global-constants">
+<h2>ES2015 Global Constants<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-global-constants" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">PI</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<span class="nx">PI</span> <span class="o">=</span> <span class="mf">42</span><span class="p">;</span> <span class="cm">/* TypeError: Assignment to constant variable. */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-assigning-variables-to-object-properties">
+<h2>ES5 Assigning Variables to Object Properties<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-assigning-variables-to-object-properties" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">foods</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">fruits</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">apple</span><span class="o">:</span> <span class="s2">"red"</span><span class="p">,</span>
+    <span class="nx">banana</span><span class="o">:</span> <span class="s2">"yellow"</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="nx">foods</span><span class="p">.</span><span class="nx">fruits</span><span class="p">.</span><span class="nx">apple</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">banana</span> <span class="o">=</span> <span class="nx">foods</span><span class="p">.</span><span class="nx">fruits</span><span class="p">.</span><span class="nx">banana</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-object-destructuring">
+<h2>ES2015 Object Destructuring<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-object-destructuring" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">foods</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">fruits</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">apple</span><span class="o">:</span> <span class="s2">"red"</span><span class="p">,</span>
+    <span class="nx">banana</span><span class="o">:</span> <span class="s2">"yellow"</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="p">{</span> <span class="nx">apple</span><span class="p">,</span> <span class="nx">banana</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">foods</span><span class="p">.</span><span class="nx">fruits</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-array-swap">
+<h2>ES5 Array Swap<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-array-swap" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">nums</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="nx">nums</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">nums</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+<span class="nx">nums</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-one-line-array-swap-with-destructuring">
+<h2>ES2015 One-Line Array Swap with Destructuring<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-one-line-array-swap-with-destructuring" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="mf">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">nums</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="mf">1</span><span class="p">]];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-map-callback">
+<h2>ES5 Map Callback<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-map-callback" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="kr">double</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">*</span> <span class="mf">2</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-arrow-functions-shorthand">
+<h2>ES2015 Arrow Functions Shorthand<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-arrow-functions-shorthand" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="kr">double</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span> <span class="p">=&gt;</span> <span class="nx">num</span> <span class="o">*</span> <span class="mf">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-default-arguments">
+<h2>ES5 Default Arguments<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-default-arguments" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="mf">10</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">b</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="mf">10</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-default-arguments">
+<h2>ES2015 Default Arguments<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-default-arguments" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span> <span class="o">=</span> <span class="mf">10</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="mf">10</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es5-function-that-takes-a-variable-number-of-arguments">
+<h2>ES5 Function that takes a variable number of arguments<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es5-function-that-takes-a-variable-number-of-arguments" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">onlyEvens</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// in ES5, this is how we turned something</span>
+  <span class="c1">// array-like into an actual array</span>
+  <span class="kd">var</span> <span class="nx">nums</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span> 
+  <span class="k">return</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">%</span> <span class="mf">2</span> <span class="o">===</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es2015-function-that-takes-a-variable-number-of-arguments">
+<h2>ES2015 Function that takes a variable number of arguments<a class="headerlink" href="https://rithm-students-assets.s3.amazonaws.com/r24/exercises/js-intermediate-2/handout/solution/index.html#es2015-function-that-takes-a-variable-number-of-arguments" title="Permalink to this headline">»</a></h2>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">onlyEvens</span><span class="p">(...</span><span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">%</span> <span class="mf">2</span> <span class="o">===</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+
+    <footer class="page-footer">
+        © Copyright 2020, Rithm School.
+        Last updated on Jan 10, 2022.
+    </footer>
+  </div>
+</div>
+  <script src="./Intermediate JavaScript 2 Solutions_files/twemoji.min.js"></script>
+  <script src="./Intermediate JavaScript 2 Solutions_files/twemoji.js"></script> 
+
+
+</body></html>
