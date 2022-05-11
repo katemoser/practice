@@ -1,0 +1,344 @@
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Connect Four OO: Solution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <link
+      href="https://unpkg.com/sanitize.css"
+      rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../_static/pygments.css">
+  <link rel="stylesheet" href="../_static/handouts.css">
+
+  
+    <link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,400,600,300italic,400italic,600italic|Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro:400,600,400italic,600italic' rel='stylesheet'>
+  
+  <style>
+
+
+  </style>
+  <style>
+    :root {
+      --theme-bodyfont: "Source Serif Pro", serif;
+      --theme-headfont: "Source Serif Pro", serif;
+      --theme-codefont: "Source Code Pro", monospace;
+      --theme-sidebarcolor: rgb(248, 248, 240);
+      --theme-backgroundcolor: white;
+      --theme-clientcolor: rgb(247, 122, 123);
+      --theme-logo: url(../_static/rithm.png)
+  </style>
+</head>
+
+<body class="glide">
+<div id="page-wrapper">
+  <div id="page-sidebar">
+    <header>
+        <img class="page-logo" alt="logo"
+              src="../_static/rithm.png">
+      <p class="page-project">Curriculum</p>
+      <p class="page-event">Rithm r24</p>
+      
+      </p>
+    </header>
+
+    <nav id="toc">
+      <ul>
+<li><a class="reference internal" href="#">Connect Four OO: Solution</a></li>
+</ul>
+
+    </nav>
+  </div>
+
+  <div id="page-content" class="page-content">
+      
+  <div class="section" id="connect-four-oo-solution">
+<h1>Connect Four OO: Solution<a class="headerlink" href="#connect-four-oo-solution" title="Permalink to this headline">»</a></h1>
+<p>You can <a class="reference external" href="../../solution.zip">download our solution code</a></p>
+<p>Our HTML, with the “enter player colors” form:</p>
+<div class="literal-block-wrapper docutils container" id="c4oo-html">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#c4oo-html" title="Permalink to this code">»</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Connect 4<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;connect4.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;p1-color&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Player 1 color&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;p2-color&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Player 2 color&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;start-game&quot;</span><span class="p">&gt;</span>Start Game!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;game&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;board&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;connect4.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Our CSS (the same, but no longer needs hard-coded player colors):</p>
+<div class="literal-block-wrapper docutils container" id="c4oo-css">
+<div class="code-block-caption"><span class="caption-text">connect4.css</span><a class="headerlink" href="#c4oo-css" title="Permalink to this code">»</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="c">/* game board table */</span>
+
+<span class="p">#</span><span class="nn">board</span> <span class="nt">td</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">border</span><span class="p">:</span> <span class="kc">solid</span> <span class="mi">1</span><span class="kt">px</span> <span class="mh">#666</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* pieces are div within game table cells: draw as colored circles */</span>
+
+<span class="p">.</span><span class="nc">piece</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* column-top is table row of clickable areas for each column */</span>
+
+<span class="p">#</span><span class="nn">column-top</span> <span class="nt">td</span> <span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="kc">dashed</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">lightgray</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="nn">column-top</span> <span class="nt">td</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">gold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Our JS:</p>
+<div class="literal-block-wrapper docutils container" id="c4oo-js">
+<div class="code-block-caption"><span class="caption-text">connect4.js</span><a class="headerlink" href="#c4oo-js" title="Permalink to this code">»</a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+<span class="cm">/** Connect Four</span>
+<span class="cm"> *</span>
+<span class="cm"> * Player 1 and 2 alternate turns. On each turn, a piece is dropped down a</span>
+<span class="cm"> * column until a player gets four-in-a-row (horiz, vert, or diag) or until</span>
+<span class="cm"> * board fills (tie)</span>
+<span class="cm"> */</span>
+
+<span class="kd">class</span> <span class="nx">Game</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">6</span><span class="p">,</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">7</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">players</span> <span class="o">=</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">;</span>
+    <span class="c1">// must bind &#39;this&#39; to handleClick since it&#39;s used as a callback</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">makeBoard</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">makeHtmlBoard</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">gameOver</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** makeBoard: create in-JS board structure:</span>
+<span class="cm">   *   board = array of rows, each row is array of cells  (board[y][x])</span>
+<span class="cm">   */</span>
+  <span class="nx">makeBoard</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">board</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span> <span class="nx">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="p">}));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** makeHtmlBoard: make HTML table and row of column tops.  */</span>
+
+  <span class="nx">makeHtmlBoard</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">board</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;board&#39;</span><span class="p">);</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+    <span class="c1">// make column tops (clickable area for adding a piece to that column)</span>
+    <span class="kd">const</span> <span class="nx">top</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+    <span class="nx">top</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;column-top&#39;</span><span class="p">);</span>
+    <span class="nx">top</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">headCell</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+      <span class="nx">headCell</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+      <span class="nx">top</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">headCell</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">board</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">top</span><span class="p">);</span>
+
+    <span class="c1">// make main part of board</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span> <span class="nx">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">row</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">cell</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+        <span class="nx">cell</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="sb">`</span><span class="si">${</span><span class="nx">y</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+        <span class="nx">row</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">cell</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nx">board</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">row</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** findSpotForCol: given column x, return top empty y (null if filled) */</span>
+
+  <span class="nx">findSpotForCol</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&gt;=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">y</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">y</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** placeInTable: update DOM to place piece into HTML board */</span>
+
+  <span class="nx">placeInTable</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">piece</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+    <span class="nx">piece</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;piece&#39;</span><span class="p">);</span>
+    <span class="nx">piece</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+    <span class="nx">piece</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50</span> <span class="o">*</span> <span class="p">(</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">2</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">spot</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">y</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">spot</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">piece</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** endGame: announce game end and prevent additional moves</span>
+<span class="cm">   *</span>
+<span class="cm">   * Two options for preventing additional moves after game over</span>
+<span class="cm">   *  - Option one: In endGame, remove event listener from column tops (clickable area)</span>
+<span class="cm">   *  - Option two: In handleClick, check gameOver property and if false, return to ignore click</span>
+<span class="cm">   *</span>
+<span class="cm">   * Option one has been implemented here.</span>
+<span class="cm">   * To try out option two...</span>
+<span class="cm">   *  1. comment the option one code in endGame and</span>
+<span class="cm">   *  2. uncomment the option two code in handleClick</span>
+<span class="cm">   */</span>
+
+  <span class="nx">endGame</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Option one: remove event listener from board to prevent additional moves</span>
+    <span class="kd">const</span> <span class="nx">columnTops</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;column-top&#39;</span><span class="p">);</span>
+    <span class="nx">columnTops</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="p">);</span>
+
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** handleClick: handle click of column top to play piece</span>
+<span class="cm">   *</span>
+<span class="cm">   * Can also prevent additional moves here if game over</span>
+<span class="cm">   * Two options for preventing additional moves after game over</span>
+<span class="cm">   *  - Option one: In endGame, remove event listener from column tops (clickable area)</span>
+<span class="cm">   *  - Option two: In handleClick, check gameOver property and if false, return to ignore click</span>
+<span class="cm">   *</span>
+<span class="cm">   * Option one has been implemented in endGame.</span>
+<span class="cm">   * To try out option two...</span>
+<span class="cm">   *  1. comment the option one code in endGame and</span>
+<span class="cm">   *  2. uncomment the option two code in handleClick</span>
+<span class="cm">   */</span>
+
+  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// // Option two: if game is over, ignore click to prevent additional moves</span>
+    <span class="c1">// if (this.gameOver) {</span>
+    <span class="c1">//   return;</span>
+    <span class="c1">// }</span>
+
+    <span class="c1">// get x from ID of clicked cell</span>
+    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="o">+</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+
+    <span class="c1">// get next spot in column (if none, ignore click)</span>
+    <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">findSpotForCol</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// place piece in board and add to HTML table</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">placeInTable</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+
+    <span class="c1">// check for tie</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">row</span> <span class="p">=&gt;</span> <span class="nx">row</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">cell</span> <span class="p">=&gt;</span> <span class="nx">cell</span><span class="p">)))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameOver</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">endGame</span><span class="p">(</span><span class="s1">&#39;Tie!&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// check for win</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checkForWin</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameOver</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">endGame</span><span class="p">(</span><span class="sb">`The </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span><span class="p">.</span><span class="nx">color</span><span class="si">}</span><span class="sb"> player won!`</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// switch players</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span> <span class="o">=</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">players</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">players</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">players</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** checkForWin: check board cell-by-cell for &quot;does a win start here?&quot; */</span>
+
+  <span class="nx">checkForWin</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Check four cells to see if they&#39;re all color of current player</span>
+    <span class="c1">//  - cells: list of four (y, x) cells</span>
+    <span class="c1">//  - returns true if all are legal coordinates &amp; all match currPlayer</span>
+    <span class="kd">const</span> <span class="nx">_win</span> <span class="o">=</span> <span class="nx">cells</span> <span class="p">=&gt;</span>
+      <span class="nx">cells</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span>
+        <span class="p">([</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">])</span> <span class="p">=&gt;</span>
+          <span class="nx">y</span> <span class="o">&gt;=</span> <span class="mf">0</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">y</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mf">0</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">x</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">&amp;&amp;</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">currPlayer</span>
+      <span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span> <span class="nx">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// get &quot;check list&quot; of 4 cells (starting here) for each of the different</span>
+        <span class="c1">// ways to win</span>
+        <span class="kd">const</span> <span class="nx">horiz</span> <span class="o">=</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">3</span><span class="p">]];</span>
+        <span class="kd">const</span> <span class="nx">vert</span> <span class="o">=</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">3</span><span class="p">,</span> <span class="nx">x</span><span class="p">]];</span>
+        <span class="kd">const</span> <span class="nx">diagDR</span> <span class="o">=</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">3</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mf">3</span><span class="p">]];</span>
+        <span class="kd">const</span> <span class="nx">diagDL</span> <span class="o">=</span> <span class="p">[[</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="nx">x</span> <span class="o">-</span> <span class="mf">1</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">x</span> <span class="o">-</span> <span class="mf">2</span><span class="p">],</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="mf">3</span><span class="p">,</span> <span class="nx">x</span> <span class="o">-</span> <span class="mf">3</span><span class="p">]];</span>
+
+        <span class="c1">// find winner (only checking each win-possibility as needed)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">_win</span><span class="p">(</span><span class="nx">horiz</span><span class="p">)</span> <span class="o">||</span> <span class="nx">_win</span><span class="p">(</span><span class="nx">vert</span><span class="p">)</span> <span class="o">||</span> <span class="nx">_win</span><span class="p">(</span><span class="nx">diagDR</span><span class="p">)</span> <span class="o">||</span> <span class="nx">_win</span><span class="p">(</span><span class="nx">diagDL</span><span class="p">))</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Player</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;start-game&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Player</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;p1-color&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Player</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;p2-color&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+  <span class="ow">new</span> <span class="nx">Game</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+
+    <footer class="page-footer">
+        &#169; Copyright 2020, Rithm School.
+        Last updated on Jan 10, 2022.
+    </footer>
+  </div>
+</div>
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+  <script src="../_static/twemoji.js"></script> 
+
+</body>
+</html>
