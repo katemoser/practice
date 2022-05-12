@@ -178,8 +178,10 @@ class Game {
           [y + 3, x - 3],
         ];
 
+        const _mywin = _win.bind(this)
         // find winner (only checking each win-possibility as needed)
         if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
+
           return true;
         }
       }
