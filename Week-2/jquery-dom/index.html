@@ -79,6 +79,22 @@
   $("#title").css("font-size", Math.random()*100);
   $("ol").append($("<li>"));
   $("ol li").last().text("HELLO CAN YOU READ THIS");
+  $("aside").empty().append($("<p>").text("I'M SO SORRY"));
+    $(".form-control").on("change", updateColor);
+    $("img").on("click", remove )
+  
+
+    function remove(evt){
+      $(evt.target).remove();
+
+    }
+  function updateColor() {
+    const red = $(".form-control").eq(0).val();
+    const blue = $(".form-control").eq(1).val();
+    const green = $(".form-control").eq(2).val();
+
+    $("body").css("background-color", `rgb(${red}, ${green}, ${blue}`);
+  }
   // Add your code here!
 </script>
 </body>
