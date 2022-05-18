@@ -22,7 +22,7 @@ async function getAndShowStoriesOnStart() {
 function generateStoryMarkup(story) {
   console.debug("generateStoryMarkup", story);
 
-  const favStatus = isFavorite(story.storyId);
+  const favStatus = isFavorite(story);
 
   const hostName = story.getHostName();
   return $(`
@@ -78,25 +78,54 @@ async function postAndDisplayNewStory(evt){
 $submitForm.on("submit", postAndDisplayNewStory);
 
 /** toggles favorite status when click on star */
-function toggleFavorite(evt){
-  const clickedStoryID = evt.target.closest("li").id;
-  console.log(clickedStoryID);
+function handleStarClick(evt){
 
-  if(isFavorite(clickedStoryID)){
-    console.log("THIS IS MY FAVORITE");
+  //toggle favorite status via API
+}
+function toggleFavorite(evt){
+  const $clickedStoryLiElement = evt.target.closest("li");
+  const star = $(evt.target);
+
+  const story = getStoryById($clickedStoryLiElement.id);
+
+  console.log(star);
+
+  if(isFavorite(story)){
+    currentUser.unFavoriteStory(story);
+    console.log("I no longer like this story");
+    
+  } else{
+    currentUser.favoriteStory(story);
+    console.log("I love this story now!")
   }
+
+  //update DOM as well
+  star.toggleClass("fas");
+  star.toggleClass("far");
+  
 
 }
 
-function isFavorite(id){
+
+function isFavorite(story){
   let isFavorite = false;
   for(let fav of currentUser.favorites){
-    if(id === fav.storyId){
+    if(story.storyId === fav.storyId){
       console.log("I love this story");
       isFavorite = true;
     }
   }
   return isFavorite;
+}
+
+function getStoryById(id){
+  
+  for(let story of storyList.stories){
+    if(story.storyId === id){
+      return story;
+    }
+  }
+  return "Sorry there is no story with that id";
 }
 
 $allStoriesList.on("click", ".star", toggleFavorite)
